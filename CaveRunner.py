@@ -33,7 +33,7 @@ def load_map(map_id):
             if c[1] == 255:
                 map_data.append({'type': 'bush', 'pos': [x, y], 'h_pos': 400, 'enemy': False})
             if c[2] == 100:
-                map_data.append({'type': 'rock', 'pos': [x, y], 'h_pos': 400, 'enemy': False})
+                map_data.append({'type': 'rocklava', 'pos': [x, y], 'h_pos': 400, 'enemy': False})
             if c[2] == 255:
                 map_data.append({'type': 'box', 'pos': [x, y], 'h_pos': 400, 'enemy': False})
             if c[0] == 255:
@@ -58,7 +58,7 @@ e.load_animations2('data/images/animations')
 e.load_particle_images('data/images/particles')
 
 grass_tile = load_img('grass')
-rock_tile = load_img('rock')
+rock_tile = load_img('rocklava')
 bush_tile = load_img('bush')
 box_tile = load_img('box')
 shadow_img = load_img('shadow')
@@ -270,7 +270,7 @@ while True:
         if tile['type'] == 'bush':
             display.blit(bush_tile, (render_x, render_y - 9 + tile['h_pos']))
             tile_rects.append(pygame.Rect(tile['pos'][0] * 100 + 10, tile['pos'][1] * 100 - 10, 100, 100))
-        if tile['type'] in ['box', 'rock']:
+        if tile['type'] in ['box', 'rocklava']:
             display.blit(rock_tile, (render_x, render_y + tile['h_pos']))
         if tile['type'] == 'box':
             display.blit(box_tile, (render_x, render_y - 9 + tile['h_pos']))
@@ -527,20 +527,20 @@ while True:
     outlined_text(bg_font, main_font, 'Level - ' + str(level), display, (8, 5))
     outlined_text(bg_font, main_font, str(enemy_count - enemies_left) + '/' + str(enemy_count), display, (8, 15))
 
-    outlined_text(bg_font, main_font, 'Left Click: Attack', display, (instructions_pos - main_font.width('Left Click: Attack') // 2, 110))
-    outlined_text(bg_font, main_font, 'Right Click: Jump', display, (instructions_pos - main_font.width('Right Click: Jump') // 2, 120))
-    outlined_text(bg_font, main_font, 'Destroy:', display, (instructions_pos - main_font.width('Destroy:') // 2, 15))
+    outlined_text(bg_font, main_font, 'Mouse Esquerdo: Atacar', display, (instructions_pos - main_font.width('Mouse Esquerdo: Atacar') // 2, 110))
+    outlined_text(bg_font, main_font, 'Mouse Direito: Pular', display, (instructions_pos - main_font.width('Mouse Direito: Pular') // 2, 120))
+    outlined_text(bg_font, main_font, 'Destrua:', display, (instructions_pos - main_font.width('Destrua:') // 2, 15))
     e.blit_center(display, enemy_imgs[enemy_timer // 30], (instructions_pos, 35))
 
     if level == 7:
         if allow_movement == 2:
-            thanks_for_playing_pos += ((display.get_width() // 2 - main_font.width('Thanks for playing!') // 2) - thanks_for_playing_pos) / 10
+            thanks_for_playing_pos += ((display.get_width() // 2 - main_font.width('Obrigado por jogar!') // 2) - thanks_for_playing_pos) / 10
 
-        bg_font.render('Thanks for playing!', display, (thanks_for_playing_pos - 1, display.get_height() // 3))
-        bg_font.render('Thanks for playing!', display, (thanks_for_playing_pos + 1, display.get_height() // 3))
-        bg_font.render('Thanks for playing!', display, (thanks_for_playing_pos, display.get_height() // 3 - 1))
-        bg_font.render('Thanks for playing!', display, (thanks_for_playing_pos, display.get_height() // 3 + 1))
-        main_font.render('Thanks for playing!', display, (thanks_for_playing_pos, display.get_height() // 3))
+        bg_font.render('Obrigado por jogar!', display, (thanks_for_playing_pos - 1, display.get_height() // 3))
+        bg_font.render('Obrigado por jogar!', display, (thanks_for_playing_pos + 1, display.get_height() // 3))
+        bg_font.render('Obrigado por jogar!', display, (thanks_for_playing_pos, display.get_height() // 3 - 1))
+        bg_font.render('Obrigado por jogar!', display, (thanks_for_playing_pos, display.get_height() // 3 + 1))
+        main_font.render('Obrigado por jogar!', display, (thanks_for_playing_pos, display.get_height() // 3))
 
 #-------------------------------------------------------------------------------------
 
